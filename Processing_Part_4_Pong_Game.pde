@@ -18,6 +18,13 @@ void reset() {
 
 void draw() { 
   background(0, 255, 255);
+  int s = second();
+ int m = minute();
+ int h = hour();
+ fill(0);
+ textSize(30);
+ text(h+":"+m+":"+s, (width/2)-50, 150);
+
   
   fill(0);
   textAlign(TOP, CENTER);
