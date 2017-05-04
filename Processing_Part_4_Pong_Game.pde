@@ -2,6 +2,9 @@ int score = 0;
 float x, y, speedX, speedY;
 float diam = 30;
 float rectSize = 200;
+final int WAIT_TIME = (int) (15 * 1000); // 3.5 seconds
+int startTime;
+int s = second();
 
 void setup() {
   fullScreen();
@@ -14,16 +17,36 @@ void reset() {
   y = height/3;
   speedX = random(7.5, 25);
   speedY = random(7.5, 25);
+  s=15;
+  s--;
 }
 
 void draw() { 
-  background(0, 255, 255);
-  int s = second();
- int m = minute();
- int h = hour();
+ background(0, 255, 255);
+ 
+ s=15-second();
+ if(s<.00000001) {
+   speedX = 0;
+   speedY=0;
+   score = 0;
+    fill(0);
+    textSize (32);
+    textAlign(width/2, CENTER);
+    text ("Game Over", 650, 425);
+    text ("Click to Restart", 620, 475);
+    s=0;
+   reset(); }
+ if(x<50) {
+   s=15; 
+   }
+   
  fill(0);
  textSize(30);
- text(h+":"+m+":"+s, (width/2)-50, 150);
+ text(":"+s, (width/2)-50, 150);
+ 
+ 
+   
+   
 
   
   fill(0);
@@ -72,5 +95,11 @@ void draw() {
 }
 
   void mousePressed() {
+    
   reset();
+  x = width/3;
+  y = height/3;
+  speedX = random(7.5, 25);
+  speedY = random(7.5, 25);
+
 }
